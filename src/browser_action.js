@@ -399,10 +399,13 @@ browseraction.createEventDiv_ = function(event) {
   } else if (event.location) {
     $('<a>').attr({
       'href': 'https://maps.google.com?q=' + encodeURIComponent(event.location),
-      'target': '_blank'
+      'target': '_blank',
+      'title' : event.location
     }).append($('<img>').addClass('location-icon').attr({
       'src': chrome.extension.getURL('icons/ic_action_place.png')
     })).appendTo(eventDetails);
+    var eventLocation = $('<span>').addClass('event-title').addClass('event-title-location').text(event.location);
+    eventLocation.appendTo(eventDetails);
   }
 
   // The location icon goes before the title because it floats right.
